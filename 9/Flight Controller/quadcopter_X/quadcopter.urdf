@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="quadcopter">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="C:/Users/user/ardupilot/Tools/gazebo/models/quadcopter_X/quadcopter_X.stl" />
+            </geometry>
+        </visual>
+    </link>
+    <link name="propeller1">
+        <visual>
+            <geometry>
+                <cylinder radius="1.5" length="10" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="propeller2">
+        <visual>
+            <geometry>
+                <cylinder radius="1.5" length="10" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="propeller3">
+        <visual>
+            <geometry>
+                <cylinder radius="1.5" length="10" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="propeller4">
+        <visual>
+            <geometry>
+                <cylinder radius="1.5" length="10" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="flight_controller">
+        <visual>
+            <geometry>
+                <box size="10 10 2" />
+            </geometry>
+            <material name="blue">
+                <color rgba="0 0 1 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="mpu6050">
+        <visual>
+            <geometry>
+                <box size="2 2 1" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+        <sensor name="mpu6050_sensor" type="IMU">
+            <update_rate>100</update_rate>
+        </sensor>
+    </link>
+    <link name="bmp180">
+        <visual>
+            <geometry>
+                <box size="2 2 1" />
+            </geometry>
+            <material name="green">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+        <sensor name="bmp180_sensor" type="Barometer">
+            <update_rate>50</update_rate>
+        </sensor>
+    </link>
+    <link name="gps_module">
+        <visual>
+            <geometry>
+                <box size="2 2 1" />
+            </geometry>
+            <material name="yellow">
+                <color rgba="1 1 0 1" />
+            </material>
+        </visual>
+        <sensor name="gps_sensor" type="GPS">
+            <update_rate>1</update_rate>
+        </sensor>
+    </link>
+    <link name="bluetooth_module">
+        <visual>
+            <geometry>
+                <box size="2 2 1" />
+            </geometry>
+            <material name="purple">
+                <color rgba="0.5 0 0.5 1" />
+            </material>
+        </visual>
+    </link>
+    <joint name="base_to_propeller1" type="fixed">
+        <parent link="base_link" />
+        <child link="propeller1" />
+        <origin rpy="0 0 0" xyz="-25 0 2.5" />
+    </joint>
+    <joint name="base_to_propeller2" type="fixed">
+        <parent link="base_link" />
+        <child link="propeller2" />
+        <origin rpy="0 0 0" xyz="25 0 2.5" />
+    </joint>
+    <joint name="base_to_propeller3" type="fixed">
+        <parent link="base_link" />
+        <child link="propeller3" />
+        <origin rpy="0 0 0" xyz="0 -25 2.5" />
+    </joint>
+    <joint name="base_to_propeller4" type="fixed">
+        <parent link="base_link" />
+        <child link="propeller4" />
+        <origin rpy="0 0 0" xyz="0 25 2.5" />
+    </joint>
+    <joint name="base_to_flight_controller" type="fixed">
+        <parent link="base_link" />
+        <child link="flight_controller" />
+        <origin rpy="0 0 0" xyz="0 0 6" />
+    </joint>
+    <joint name="controller_to_mpu6050" type="fixed">
+        <parent link="flight_controller" />
+        <child link="mpu6050" />
+        <origin rpy="0 0 0" xyz="3 0 1" />
+    </joint>
+    <joint name="controller_to_bmp180" type="fixed">
+        <parent link="flight_controller" />
+        <child link="bmp180" />
+        <origin rpy="0 0 0" xyz="-3 0 1" />
+    </joint>
+    <joint name="controller_to_gps" type="fixed">
+        <parent link="flight_controller" />
+        <child link="gps_module" />
+        <origin rpy="0 0 0" xyz="0 3 1" />
+    </joint>
+    <joint name="controller_to_bluetooth" type="fixed">
+        <parent link="flight_controller" />
+        <child link="bluetooth_module" />
+        <origin rpy="0 0 0" xyz="0 -3 1" />
+    </joint>
+</robot>
